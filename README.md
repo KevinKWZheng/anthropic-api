@@ -22,6 +22,6 @@ To use this class, you will need an API key from Anthropic. Then you can use the
 var Claude=new ClaudeAPI(YOUR_API_KEY_HERE);
 ```
 
-You can check out the demos on how to use this package.
+You can check out the demos on how to use this package. Run `npx tsx demo/conversation.ts` and see how Claude performs.
 
 Support for other models from Anthropic will be added if they are published. You are welcome to submit PRs and feature requests.

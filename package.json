@@ -1,6 +1,6 @@
 {
   "name": "anthropic-api",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A TS library for accessing Anthropic's models",
   "main": "main.ts",
   "type": "module",

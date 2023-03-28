@@ -1,6 +1,6 @@
 import ClaudeAPI from "../main";
 
-var API = new ClaudeAPI('');
+var API = new ClaudeAPI(``);
 
 var response = await API.sendMessage('Hello there!');
 

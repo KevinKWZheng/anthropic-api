@@ -46,6 +46,30 @@ export class ClaudeAPI {
             conversationId: conversationId,
         };
     }
+
+    /**
+     * Export the conversation specified by `conversationId`
+     * @param conversationId 
+     * @returns The full conversation, combined to one string as passed to Claude
+     */
+    public getConversation(conversationId: string) {
+        if (!fs.existsSync(`data/${conversationId}.txt`))
+            throw new Error('conversationId does not exist');
+
+        return fs.readFileSync(`data/${conversationId}.txt`, { encoding: 'utf-8' });
+    }
+
+    /**
+     * Delete the conversation specified by `conversationId`
+     * @param conversationId 
+     */
+    public delConversation(conversationId: string) {
+        if (!fs.existsSync(`data/${conversationId}.txt`))
+            throw new Error('conversationId does not exist');
+
+        fs.unlinkSync(`data/${conversationId}.txt`);
+    }
+
     private initConversationCache() {
         var conversationId = '';
         do {
