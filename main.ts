@@ -1,4 +1,3 @@
-import { ClaudeAPI } from "./src/Claude";
+import { ClaudeAPI } from './src/Claude';
 
 export default ClaudeAPI;
-export { ClaudeAPI };

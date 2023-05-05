@@ -3,11 +3,11 @@ import fs from 'fs';
 import * as fsAsync from 'fs/promises';
 import { URL } from "./Constants";
 
-export class ClaudeAPI {
+export class ClaudeAPI implements ClaudeAPI {
     constructor(APIKey: string) {
         this.key = APIKey;
     }
-    public async sendMessage(text: string, conversationId?: string, options?: ClaudeOptions): Promise<ClaudeAPIResponse> {
+    public async sendMessage(text: string, conversationId?: string, options?: ClaudeAPI.Options): Promise<ClaudeAPI.ClaudeAPIResponse> {
         var conversations = '\n\n';
         //Find previously cached conversation
         if (conversationId) {
@@ -21,7 +21,7 @@ export class ClaudeAPI {
         } else conversationId = this.initConversationCache();
 
         conversations = conversations.concat(`Human: ${text}\n\nAssistant: `);
-        var response: ClaudeResponse = await fetcher(URL.Completion, {
+        var response: ClaudeAPI.Response = await fetcher(URL.Completion, {
             method: 'POST',
             headers: {
                 "content-type": "application/json",
@@ -47,11 +47,6 @@ export class ClaudeAPI {
         };
     }
 
-    /**
-     * Export the conversation specified by `conversationId`
-     * @param conversationId 
-     * @returns The full conversation, combined to one string as passed to Claude
-     */
     public getConversation(conversationId: string) {
         if (!fs.existsSync(`data/${conversationId}.txt`))
             throw new Error('conversationId does not exist');
@@ -59,10 +54,6 @@ export class ClaudeAPI {
         return fs.readFileSync(`data/${conversationId}.txt`, { encoding: 'utf-8' });
     }
 
-    /**
-     * Delete the conversation specified by `conversationId`
-     * @param conversationId 
-     */
     public delConversation(conversationId: string) {
         if (!fs.existsSync(`data/${conversationId}.txt`))
             throw new Error('conversationId does not exist');
@@ -70,7 +61,7 @@ export class ClaudeAPI {
         fs.unlinkSync(`data/${conversationId}.txt`);
     }
 
-    private initConversationCache() {
+    public initConversationCache() {
         var conversationId = '';
         do {
             conversationId = genRandSeq(25);

@@ -1,8 +1,9 @@
 {
   "name": "anthropic-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A TS library for accessing Anthropic's models",
   "main": "main.ts",
+  "types": "main.d.ts",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,9 +24,9 @@
   "homepage": "https://github.com/KevinKaiwenZheng/anthropic-api#readme",
   "devDependencies": {
     "@types/keyv": "^4.2.0",
-    "@types/node-fetch": "^2.6.2",
+    "@types/node-fetch": "^2.6.3",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.4"
   },
   "dependencies": {
     "keyv": "^4.5.2",
